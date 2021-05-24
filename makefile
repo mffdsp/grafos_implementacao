@@ -1,7 +1,7 @@
  FOO = $PATH
 
 dijkstra:
-	g++ dij.cpp -o dij
+	g++ dijkstra.cpp -o dijkstra
 	@echo "Algoritmo de Dijkstra compilado com sucesso!"
 	
 prim:
@@ -9,7 +9,7 @@ prim:
 	@echo "Algoritmo de Prim compilado com sucesso!"
 	
 fordf:
-	g++ fordf.cpp -o fordf
+	g++ fordfulkerson.cpp -o fordfulkerson
 	@echo "Algoritmo de Ford-Fulkerson compilado com sucesso!"
 kruskal:
 	g++ kruskal.cpp -o kruskal 
