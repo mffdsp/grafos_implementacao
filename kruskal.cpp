@@ -107,7 +107,7 @@ Graph fileReader(){
     
     cout << "Lendo arquivo de entrada..." << endl;
     ifstream file;
-    file.open("data.txt");
+    file.open("Big_G.txt");
 
     int n, m, lineReader[3];
 

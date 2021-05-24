@@ -9,6 +9,7 @@ using namespace std;
 
 int Gsize = 0;
 
+//Algoritmo classíco de Busca em largura
 bool bfs(int **rGraph, int parent[], int size, int src, int sink){
 
     bool visited[size];
@@ -43,19 +44,22 @@ bool bfs(int **rGraph, int parent[], int size, int src, int sink){
 void fordFulkerson(int **grafo, int src, int sink){
 
     cout << "Executando o algoritmo de Ford-Fulkerson..." << endl;
-    cout << "Source: " << src << endl << "Sink: " << sink << endl;
+    cout << "Source: " << src + 1 << endl << "Sink: " << sink + 1 << endl;
 
     int p[Gsize], max = 0;
     int v, u;
 
+    //Enquanto existir caminho de aumento de src para sink no grafo residual
     while(bfs(grafo, p, Gsize, src, sink)){
       
         int path = INT_MAX;
 
         for(v = sink; v != src; v = p[v]){
             u = p[v];
+            //Seja path um caminho de aumento src-sink no grafo residual
             path = min(path, grafo[u][v]);
         }
+        //Atualizamos o grafo residual
         for (v = sink; v != src; v = p[v]){
             u = p[v];
             grafo[u][v] -= path;
@@ -64,14 +68,14 @@ void fordFulkerson(int **grafo, int src, int sink){
         max += path;
         
     }
-    cout << "O fluxo máximo é dado por: " << max << endl;
+    cout << "O fluxo maximo possivel e' dado por: " << max << endl;
 }
  
 int **fileReader(){
     
     cout << "Lendo arquivo de entrada..." << endl;
     ifstream file;
-    file.open("data.txt");
+    file.open("rian_input.dat");
 
     int n, m, lineReader[3];
 
@@ -93,8 +97,8 @@ int **fileReader(){
     while(m--){
         file >> lineReader[0] >> lineReader[1] >> lineReader[2];
 
-        int v1 = lineReader[0];
-        int v2 = lineReader[1];
+        int v1 = lineReader[0] - 1;
+        int v2 = lineReader[1] - 1;
         int w = lineReader[2];
 
         graph[v1][v2] = w;
@@ -124,7 +128,7 @@ void freeGraph(int **graph){
 
 int main(){
         
-    int **graph = fileReader();
+    int **graph = fileReader(); 
     
     //printGraph(graph);
     fordFulkerson(graph, 0, Gsize - 1);
