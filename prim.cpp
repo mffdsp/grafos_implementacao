@@ -77,8 +77,8 @@ int ** fileReader(int **graph){
     
     cout << "Lendo arquivo de entrada..." << endl;
     ifstream file;
-    file.open("Big_G.txt");
-    
+    file.open("rian_input.dat");
+
     int n, m, lineReader[3];
     file >> n >> m;
     Gsize = n;

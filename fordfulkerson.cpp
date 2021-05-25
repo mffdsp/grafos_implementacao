@@ -26,13 +26,11 @@ bool bfs(int **rGraph, int parent[], int size, int src, int sink){
  
         for (int v = 0; v < size; v++) {
             if (visited[v] == false && rGraph[u][v] > 0) {
-
+                parent[v] = u;
                 if (v == sink) {
-                    parent[v] = u;
                     return true;
                 }
                 q.push(v);
-                parent[v] = u;
                 visited[v] = true;
             }
         }
@@ -59,12 +57,14 @@ void fordFulkerson(int **grafo, int src, int sink){
             //Seja path um caminho de aumento src-sink no grafo residual
             path = min(path, grafo[u][v]);
         }
+       
         //Atualizamos o grafo residual
         for (v = sink; v != src; v = p[v]){
             u = p[v];
             grafo[u][v] -= path;
             grafo[v][u] += path;
         }
+        
         max += path;
         
     }
@@ -135,4 +135,4 @@ int main(){
     freeGraph(graph);
   
     return 0;
-}
+}   
