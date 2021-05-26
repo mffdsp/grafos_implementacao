@@ -39,7 +39,7 @@ A entrada é dada por um grafo não direcionado, retorna as arestas que formam a
 
 <h2>Fordfulkerson</h2>
 
-A entrada é dada por um grafo não direcionado, retorna  fluxo máximo entre fonte e sumidouro.
+A entrada é dada por um grafo direcionado, retorna  fluxo máximo entre fonte e sumidouro.
 
 <div align="center">
 	<h1> Compilação utilizando makefile no linux: </h1>
