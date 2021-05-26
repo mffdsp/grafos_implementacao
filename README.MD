@@ -88,6 +88,8 @@ obs. Vértices iniciando em 1 até n.
 	<h1> Execução: </h1>
 </div>
 
+obs. É necessária a existência de um arquivo "data.txt" na raiz, como citado no tópico de entrada.
+
 Prim:
 ```
 ./prim 
