@@ -64,8 +64,8 @@ void Graph::dijkstra(int src, int sink=-1){
     cout << "Vertice \t Distancia em relacao a fonte" << endl;
     //Todas as distâncias
     if(sink == -1){
-    for (int i = 0; i < V; ++i){
-            cout << i << "\t \t " << dist[i] << endl;
+    for (int i = 0; i < V - 1; ++i){
+            cout << i + 1 << "\t \t " << dist[i + 1] << endl;
         }
     }else {
         //Apenas uma distancia, entre src e sink
@@ -83,17 +83,19 @@ Graph fileReader(){
     int n, m, lineReader[3];
 
     file >> n >> m;
-    Graph g(n);
+
+    Graph g(n + 1);
+
     cout << "Montando lista de adjacencia..." << endl;
     while(m--){
         
         file >> lineReader[0] >> lineReader[1] >> lineReader[2];
+
         int v1 = lineReader[0];
         int v2 = lineReader[1];
         int w = lineReader[2];
-        
+     
         g.addEdge(v1, v2, w);
-        
     }
     return g;
  
@@ -103,8 +105,8 @@ int main(){
     //Arquivo de entrada data.txt
     Graph g = fileReader();
     //menor distancia entre todos e a fonte
-    g.dijkstra(0, 2);
+    g.dijkstra(1);
     //menor distância entre v1 e a fonte
-    //g.dijkstra(0, 3);
+    //g.dijkstra(1, 6);
     return 0;
 }
