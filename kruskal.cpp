@@ -78,26 +78,27 @@ void Graph::kruskal(){
     cout << "Executando o algoritmo de Kruskal..." << endl; 
 
 	int mincost = 0; 
-	sort(edges.begin(), edges.end());
-	DisjointSets ds(V);
+	sort(edges.begin(), edges.end()); // Ordena as arestas de acordo com menor peso
+	DisjointSets ds(V); // Cria os conjuntos disjuntos
 
-	vector< pair<int, edge> >::iterator it;
+	vector< pair<int, edge> >::iterator it; 
     
     cout << "Arvore geradora minima:\nEdge(v1, v2) \tWeight\n"; 
 
-	for (it=edges.begin(); it!=edges.end(); it++){
+	for (it=edges.begin(); it!=edges.end(); it++){ // Percorre por todas as arestas previamente ordenadas.
 
 		int u = it->second.first;
 		int v = it->second.second;
-
-		int set_u = ds.find(u);
+		
+		// Utilização do algoritmo de Union-Find.
+		int set_u = ds.find(u); 
 		int set_v = ds.find(v);
 
-		if (set_u != set_v){
+		if (set_u != set_v){ // Verifica se ao adicionar a aresta, irá ocorrer a criação de um ciclo.
 
-            cout << u << " " << v << " \t\t" << it->first << endl; 
-			mincost += it->first;
-			ds.merge(set_u, set_v);
+            		cout << u << " " << v << " \t\t" << it->first << endl; 	// Caso não haja a formação de um ciclo, adiciona a aresta a MST.
+			mincost += it->first; // O peso mínimo da árvore é atualizado.
+			ds.merge(set_u, set_v); 
 		}
 	}
     cout << "Custo minimo: " << mincost << endl;
