@@ -34,27 +34,35 @@ void Graph::addEdge(int u, int v, int w){
 void Graph::dijkstra(int src, int sink=-1){
 
     cout << "Executando o algoritmo de Dijkstra..." << endl; 
-
+    
+    // Inicialização da fila de prioridade
     priority_queue< edge, vector <edge> , greater<edge> > pq;
-  
+    
+    // Inicialização do vetor contendo as distâncias
     vector<int> dist(V, INT_MAX);
   
+    //Adiciona a origem na fila
     pq.push(make_pair(0, src));
+  
+    // Inicia a distância entre origem-origem como nula.
     dist[src] = 0;
-  
+    
+    // Enquanto a fila de prioridade não estiver vazia
     while (!pq.empty()){
-
+        
+        // Seleciona o elemento de menor peso
         int u = pq.top().second;
-        pq.pop();
-  
+        pq.pop(); // Retira o primeiro elemento na fila de prioridade
+        
         list< pair<int, int> >::iterator i;
-        for (i = adj[u].begin(); i != adj[u].end(); ++i){
-
-            int v = (*i).first;
+        for (i = adj[u].begin(); i != adj[u].end(); ++i){ // Percorre suas relações para cada vértice adjascente a u
+            
+            // Atribui o vértice adjascente e o peso da aresta que os interligam.
+            int v = (*i).first; 
             int weight = (*i).second;
   
-            if (dist[v] > dist[u] + weight){
-                
+            if (dist[v] > dist[u] + weight){ // Caso haja um caminho mínimo entre u e v
+                // Atualiza a distância de v
                 dist[v] = dist[u] + weight;
                 pq.push(make_pair(dist[v], v));
             }
@@ -62,7 +70,7 @@ void Graph::dijkstra(int src, int sink=-1){
     }
     
     cout << "Vertice \t Distancia em relacao a fonte" << endl;
-    //Todas as distâncias
+    // Imprime todas as menores distância em relação a origem OU caso seja especificado um segundo parâmetro, imprime a menor distância entre ambos os parâmetros.
     if(sink == -1){
     for (int i = 0; i < V - 1; ++i){
             cout << i + 1 << "\t \t " << dist[i + 1] << endl;
@@ -75,7 +83,6 @@ void Graph::dijkstra(int src, int sink=-1){
 }
 
 Graph fileReader(){
-    
     cout << "Lendo arquivo de entrada..." << endl;
     ifstream file;
     file.open("data.txt");
