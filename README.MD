@@ -42,7 +42,7 @@ A entrada é dada por um grafo não direcionado, retorna as arestas que formam a
 A entrada é dada por um grafo não direcionado, retorna  fluxo máximo entre fonte e sumidouro.
 
 <div align="center">
-	<h1> Compilação: </h1>
+	<h1> Compilação utilizando makefile no linux: </h1>
 </div>
 
 Compilar todos os algoritmos:
@@ -57,6 +57,13 @@ make prim
 make fordf
 make kruskal
 ```
+Obs. Caso esteja utilizando windows, baixe o <a href="https://ubuntu.com/download">ubuntu</a>! ☺. Ou compile manualmente para cada \<algoritmo\>:
+	
+```
+g++ <algoritmo>.cpp -o <algoritmo>.exe
+
+```
+
 
 <div align="center">
 	<h1> Entrada: </h1>
