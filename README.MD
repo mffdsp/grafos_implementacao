@@ -57,7 +57,7 @@ make prim
 make fordf
 make kruskal
 ```
-Obs. Caso esteja utilizando windows, baixe o <a href="https://ubuntu.com/download">ubuntu</a>! ☺. Ou compile manualmente para cada \<algoritmo\>:
+Obs. Caso esteja utilizando windows, baixe o <a href="https://ubuntu.com/download">linux</a>! ☺. Ou compile manualmente para cada \<algoritmo\>:
 	
 ```
 g++ <algoritmo>.cpp -o <algoritmo>.exe
