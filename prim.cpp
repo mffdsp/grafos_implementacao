@@ -37,33 +37,34 @@ void printResult(int parent[], int **graph){
 void prim(int **graph){ 
 
     cout << "Executando o algoritmo de Prim..." << endl; 
-
+    // Inicialização de variáveis
     int parent[Gsize];
-    parent[0] = -1; 
+    
+    parent[0] = -1; // O primeiro nó sempre vai ser a raiz da MST
 
     bool mstSet[Gsize]; 
     int key[Gsize]; 
   
-    for (int i = 0; i < Gsize; i++){
+    for (int i = 0; i < Gsize; i++){ // Percorre o array auxiliar 'key' e preenche com peso infinito.
         key[i] = INT_MAX;
         mstSet[i] = false; 
     }
     
-    key[0] = 0; 
+    key[0] = 0; // Atribui ao primeiro elemento do array 'key' peso nulo.
 
-    for (int count = 0; count < Gsize - 1; count++){ 
+    for (int count = 0; count < Gsize - 1; count++){ // Itera até a MST tiver Gsize vértices
         
-        int u = minKey(key, mstSet); 
+        int u = minKey(key, mstSet); // Seleciona o vértice mínimo em 'key' do conjunto de vértices que ainda não foram incluídos na MST.
   
-        mstSet[u] = true; 
-        for (int v = 0; v < Gsize; v += 1){
+        mstSet[u] = true; // Adiciona o vértice selecionado ao conjunto MST.
+        for (int v = 0; v < Gsize; v += 1){ // Percorre os vértices
             
-            if (mstSet[v] == false && graph[u][v] < key[v]){
+            if (mstSet[v] == false && graph[u][v] < key[v]){ // Caso o vértice ainda não tenha sido adicionado em na MST
                 parent[v] = u;
-                key[v] = graph[u][v]; 
+                key[v] = graph[u][v]; // Atualiza 'key[v]' se e somente se, graph[u][v] for menor que 'key[v]'
             }
         }
-        if(u == INT_MAX){
+        if(u == INT_MAX){ // Caso não haja a existência de uma MST.
              cout << "Não há árvore geradora minima" << endl; 
              exit(0);
         }
