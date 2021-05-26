@@ -9,7 +9,7 @@ using namespace std;
 
 int Gsize = 0;
 
-//Algoritmo classíco de Busca em largura
+// Algoritmo classíco de Busca em largura
 bool bfs(int **rGraph, int parent[], int size, int src, int sink){
 
     bool visited[size];
@@ -43,22 +43,23 @@ void fordFulkerson(int **grafo, int src, int sink){
 
     cout << "Executando o algoritmo de Ford-Fulkerson..." << endl;
     cout << "Source: " << src + 1 << endl << "Sink: " << sink + 1 << endl;
-
+        
+    // Inicialização de variáveis
     int p[Gsize], max = 0;
     int v, u;
 
-    //Enquanto existir caminho de aumento de src para sink no grafo residual
+    // Enquanto existir caminho de aumento da origem para o destino no grafo residual
     while(bfs(grafo, p, Gsize, src, sink)){
       
         int path = INT_MAX;
 
-        for(v = sink; v != src; v = p[v]){
+        for(v = sink; v != src; v = p[v]){ 
             u = p[v];
-            //Seja path um caminho de aumento src-sink no grafo residual
+            // Seja path um caminho possível origem-destino no grafo residual
             path = min(path, grafo[u][v]);
         }
        
-        //Atualizamos o grafo residual
+        // Atualizamos o grafo residual
         for (v = sink; v != src; v = p[v]){
             u = p[v];
             grafo[u][v] -= path;
